@@ -5,8 +5,9 @@ NodeBench.prototype.quiet = false;
 NodeBench.prototype.baseline = 0;
 NodeBench.prototype.current = 0;
 NodeBench.prototype.peakMem = 0;
-NodeBench.prototype.startTime = 0;
-NodeBench.prototype.endTime = 0;
+NodeBench.prototype.heapInit = 0;
+NodeBench.prototype.startTime = null;
+NodeBench.prototype.endTime = null;
 NodeBench.prototype.tickTimes = [];
 NodeBench.prototype.outfile = '';
 NodeBench.prototype.setQuiet = function() {
@@ -25,7 +26,12 @@ NodeBench.prototype.getTime = function() {
 }
 NodeBench.prototype.getMem = function() {
     var p = process.memoryUsage();
-    if(p.heapUsed > this.peakMem) this.peakMem =p.heapUsed;
+    if(this.heapInit === 0) {
+        this.heapInit = p.heapTotal;
+        this.peakMem = p.heapUsed;
+    }
+    else if(p.heapTotal > this.heapInit && p.heapTotal > this.peakMem) this.peakMem = p.heapTotal;
+    else if(p.heapUsed > this.peakMem) this.peakMem = p.heapUsed;
     return [p.heapUsed, this.peakMem];
 }
 NodeBench.prototype.start = function(desc) {
