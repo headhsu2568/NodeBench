@@ -1,10 +1,19 @@
-NodeBench v0.1
-==============
+NodeBench
+=========
+
+#### v0.2.0
 
 A simple benchmark tool for Node.js
 
+Install
+-------
+
+    npm install nodebench
+
 Quick Start
 -----------
+
+Example code:
 
     var NodeBench = require('NodeBench.js');
     var NB = new NodeBench(); // output to console
@@ -15,8 +24,7 @@ Quick Start
     NB.end();
     NB.report();
 
-
-The output example:
+The output might be:
 
     -------------------------------------------------------------------------------------
     >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description
