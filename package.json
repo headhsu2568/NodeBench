@@ -1,0 +1,17 @@
+{
+  "name": "nodebench",
+  "version": "0.2.0",
+  "description": "A simple benchmark tool for Node.js",
+  "main": "NodeBench.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/headhsu2568/NodeBench.git"
+  },
+  "keywords": [
+    "benchmark"
+  ],
+  "author": "Yen-Chun Hsu",
+  "license": "BSD"
+}
