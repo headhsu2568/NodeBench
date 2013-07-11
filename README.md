@@ -19,7 +19,7 @@ Quick Start
 The output example:
 
     -------------------------------------------------------------------------------
-    >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description
+    >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description
     -------------------------------------------------------------------------------
     >[1] 00000000.0298337810 (+00000000.0000000000 secs) - 2237504 bytes (2237504 bytes) - NodeBench starts
     >[2] 00000000.0299620300 (+00000000.0001282491 secs) - 2240888 bytes (2240888 bytes) - the first tick
@@ -30,6 +30,11 @@ The output example:
     > Elapsed Time: 0.00022255803924053907 secs
     > Peak Used Memory: 2243288 bytes
     ============================================
+
+Remarks
+-------
+
+* For accurate evaluation of peak memory usage, starting the benchmark at the beginning of your program is recommended
 
 <br />
 - - -

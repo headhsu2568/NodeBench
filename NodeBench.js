@@ -88,9 +88,9 @@ NodeBench.prototype.report = function(html, showFormat) {
     }
     var base = this.tickTimes[this.baseline][1];
     if(showFormat === true) {
-        out('-------------------------------------------------------------------------------' + br);
-        out('>[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description' + br);
-        out('-------------------------------------------------------------------------------' + br);
+        out('-------------------------------------------------------------------------------------' + br);
+        out('>[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description' + br);
+        out('-------------------------------------------------------------------------------------' + br);
     }
     for(var i in this.tickTimes) {
         var offset = this.tickTimes[i][1] - base;
@@ -117,7 +117,7 @@ NodeBench.prototype.report = function(html, showFormat) {
     out(br);
     out('============================================' + br);
     out('> Elapsed Time: ' + elapsedTime + ' secs' + br);
-    out('> Peak Used Memory: ' + this.peakMem + ' bytes' + br);
+    out('> Peak Memory Usage: ' + this.peakMem + ' bytes' + br);
     out('============================================' + br);
     out(br);
     this.reportExtend(br);
