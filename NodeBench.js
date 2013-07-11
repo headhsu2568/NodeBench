@@ -5,8 +5,9 @@ NodeBench.prototype.quiet = false;
 NodeBench.prototype.baseline = 0;
 NodeBench.prototype.current = 0;
 NodeBench.prototype.peakMem = 0;
-NodeBench.prototype.startTime = 0;
-NodeBench.prototype.endTime = 0;
+NodeBench.prototype.heapInit = 0;
+NodeBench.prototype.startTime = null;
+NodeBench.prototype.endTime = null;
 NodeBench.prototype.tickTimes = [];
 NodeBench.prototype.outfile = '';
 NodeBench.prototype.setQuiet = function() {
@@ -25,7 +26,12 @@ NodeBench.prototype.getTime = function() {
 }
 NodeBench.prototype.getMem = function() {
     var p = process.memoryUsage();
-    if(p.heapUsed > this.peakMem) this.peakMem =p.heapUsed;
+    if(this.heapInit === 0) {
+        this.heapInit = p.heapTotal;
+        this.peakMem = p.heapUsed;
+    }
+    else if(p.heapTotal > this.heapInit && p.heapTotal > this.peakMem) this.peakMem = p.heapTotal;
+    else if(p.heapUsed > this.peakMem) this.peakMem = p.heapUsed;
     return [p.heapUsed, this.peakMem];
 }
 NodeBench.prototype.start = function(desc) {
@@ -82,9 +88,9 @@ NodeBench.prototype.report = function(html, showFormat) {
     }
     var base = this.tickTimes[this.baseline][1];
     if(showFormat === true) {
-        out('-------------------------------------------------------------------------------' + br);
-        out('>[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Memory Peak) - Description' + br);
-        out('-------------------------------------------------------------------------------' + br);
+        out('-------------------------------------------------------------------------------------' + br);
+        out('>[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description' + br);
+        out('-------------------------------------------------------------------------------------' + br);
     }
     for(var i in this.tickTimes) {
         var offset = this.tickTimes[i][1] - base;
@@ -111,7 +117,7 @@ NodeBench.prototype.report = function(html, showFormat) {
     out(br);
     out('============================================' + br);
     out('> Elapsed Time: ' + elapsedTime + ' secs' + br);
-    out('> Peak Used Memory: ' + this.peakMem + ' bytes' + br);
+    out('> Peak Memory Usage: ' + this.peakMem + ' bytes' + br);
     out('============================================' + br);
     out(br);
     this.reportExtend(br);
