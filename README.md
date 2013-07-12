@@ -1,7 +1,7 @@
 NodeBench
 =========
 
-#### v0.2.1
+#### v0.3.0
 
 A simple benchmark tool for Node.js
 

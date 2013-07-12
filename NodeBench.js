@@ -120,8 +120,8 @@ NodeBench.prototype.report = function(html, showFormat) {
     out('> Peak Memory Usage: ' + this.peakMem + ' bytes' + br);
     out('============================================' + br);
     out(br);
-    this.reportExtend(br);
+    this.reportExtend(br, out);
 }
-NodeBench.prototype.reportExtend = function(br) {}
+NodeBench.prototype.reportExtend = function(br, out) {}
 
 module.exports = NodeBench;
