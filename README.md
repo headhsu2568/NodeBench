@@ -15,7 +15,8 @@ Quick Start
 
 Example code:
 
-    var NodeBench = require('NodeBench.js');
+    var NodeBench = require('nodebench'); // require this module
+    var NodeBench = require('NodeBench.js'); // require main file directly
     var NB = new NodeBench(); // output to console
     var NB = new NodeBench('benchmark.log'); // output to file
     NB.start();
