@@ -1,7 +1,7 @@
 NodeBench
 =========
 
-#### v0.4.0
+#### v0.4.1
 
 A simple benchmark tool for Node.js
 
@@ -15,10 +15,10 @@ Quick Start
 
 Example code:
 
-    var NodeBench = require('nodebench'); // require this module
-    var NodeBench = require('NodeBench.js'); // require main file directly
-    var NB = new NodeBench(); // output to console
-    var NB = new NodeBench('benchmark.log'); // output to file
+    var NodeBench = require('nodebench'); // require this module or ...
+    //var NodeBench = require('./NodeBench.js'); // require main file directly
+    var NB = new NodeBench(); // output to console or ...
+    //var NB = new NodeBench('benchmark.log'); // output to file
     NB.start();
     NB.tick('the first tick'); // record this tick
     NB.tick('the second tick'); // record this tick
