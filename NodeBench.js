@@ -102,20 +102,20 @@ NodeBench.prototype.report = function(html, showFormat) {
         var offset = this.tickTimes[i][1] - base;
         offset = offset.toFixed(10);
         if(offset >= 0) {
-            if(offset < 100000000) {
-                offset = '00000000' + offset;
-                offset = '+' + offset.slice(-19);
+            if(offset < 10000000000) {
+                offset = '0000000000' + offset;
+                offset = '+' + offset.slice(-21);
             }
             else offset = '+' + offset;
         }
-        else if(offset < -100000000) {
-            offset = '00000000' + offset.slice(1);
-            offset = '-' + offset.slice(-19);
+        else if(offset < -10000000000) {
+            offset = '0000000000' + offset.slice(1);
+            offset = '-' + offset.slice(-21);
         }
         var timestamp = this.tickTimes[i][1].toFixed(10);
-        if(timestamp < 100000000) {
-            timestamp = '00000000' + timestamp;
-            timestamp = timestamp.slice(-19);
+        if(timestamp < 10000000000) {
+            timestamp = '0000000000' + timestamp;
+            timestamp = timestamp.slice(-21);
         }
         out(this.tickTimes[i][0] + ' ' + timestamp + ' (' + offset + ' secs) - ' + this.tickTimes[i][2][0] + ' bytes (' + this.tickTimes[i][2][1] + ' bytes) - ' + this.tickTimes[i][3] + br);
     }
