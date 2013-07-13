@@ -6,6 +6,8 @@ NodeBench.prototype.baseline = 0;
 NodeBench.prototype.current = 0;
 NodeBench.prototype.peakMem = 0;
 NodeBench.prototype.heapInit = 0;
+NodeBench.prototype.timeInit = 0;
+NodeBench.prototype.startTimestamp = 0;
 NodeBench.prototype.startTime = null;
 NodeBench.prototype.endTime = null;
 NodeBench.prototype.tickTimes = [];
@@ -22,7 +24,11 @@ NodeBench.prototype.setBaseline = function(baseline) {
     else this.baseline = this.current - 1;
 }
 NodeBench.prototype.getTime = function() {
-    return process.uptime();
+    if(typeof this.startTimestamp === 'undefined' || this.startTimestamp === null || this.startTimestamp === 0) {
+        this.startTimestamp = new Date().getTime() / 1000;
+        this.timeInit = process.uptime();
+    }
+    return this.startTimestamp + process.uptime() - this.timeInit;
 }
 NodeBench.prototype.getMem = function() {
     var p = process.memoryUsage();
