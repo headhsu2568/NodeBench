@@ -1,7 +1,7 @@
 NodeBench
 =========
 
-#### v0.3.0
+#### v0.4.1
 
 A simple benchmark tool for Node.js
 
@@ -15,10 +15,10 @@ Quick Start
 
 Example code:
 
-    var NodeBench = require('nodebench'); // require this module
-    var NodeBench = require('NodeBench.js'); // require main file directly
-    var NB = new NodeBench(); // output to console
-    var NB = new NodeBench('benchmark.log'); // output to file
+    var NodeBench = require('nodebench'); // require this module or ...
+    //var NodeBench = require('./NodeBench.js'); // require main file directly
+    var NB = new NodeBench(); // output to console or ...
+    //var NB = new NodeBench('benchmark.log'); // output to file
     NB.start();
     NB.tick('the first tick'); // record this tick
     NB.tick('the second tick'); // record this tick
@@ -30,14 +30,14 @@ The output might be:
     -------------------------------------------------------------------------------------
     >[Seq no.] Timestamp (Elapsed Time) - Memory Usage (Peak Memory Usage) - Description
     -------------------------------------------------------------------------------------
-    >[1] 00000000.0298337810 (+00000000.0000000000 secs) - 2237504 bytes (2237504 bytes) - NodeBench starts
-    >[2] 00000000.0299620300 (+00000000.0001282491 secs) - 2240888 bytes (2240888 bytes) - the first tick
-    >[3] 00000000.0300181720 (+00000000.0001843910 secs) - 2242912 bytes (2242912 bytes) - the second tick
-    >[4] 00000000.0300563390 (+00000000.0002225580 secs) - 2243288 bytes (2243288 bytes) - NodeBench ends
+    >[1] 1373695811.9530036449 (+0000000000.0000000000 secs) - 2240864 bytes (2240864 bytes) - NodeBench starts
+    >[2] 1373695811.9531486034 (+0000000000.0001449585 secs) - 2245424 bytes (2245424 bytes) - the first tick
+    >[3] 1373695811.9532113075 (+0000000000.0002076626 secs) - 2247712 bytes (2247712 bytes) - the second tick
+    >[4] 1373695811.9532546997 (+0000000000.0002510548 secs) - 2248336 bytes (2248336 bytes) - NodeBench ends
 
     ============================================
-    > Elapsed Time: 0.00022255803924053907 secs
-    > Peak Memory Usage: 2243288 bytes
+    > Elapsed Time: 0.0002510547637939453 secs
+    > Peak Memory Usage: 2248336 bytes
     ============================================
 
 Remarks
