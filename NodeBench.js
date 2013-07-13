@@ -6,6 +6,8 @@ NodeBench.prototype.baseline = 0;
 NodeBench.prototype.current = 0;
 NodeBench.prototype.peakMem = 0;
 NodeBench.prototype.heapInit = 0;
+NodeBench.prototype.timeInit = 0;
+NodeBench.prototype.startTimestamp = 0;
 NodeBench.prototype.startTime = null;
 NodeBench.prototype.endTime = null;
 NodeBench.prototype.tickTimes = [];
@@ -22,7 +24,11 @@ NodeBench.prototype.setBaseline = function(baseline) {
     else this.baseline = this.current - 1;
 }
 NodeBench.prototype.getTime = function() {
-    return process.uptime();
+    if(typeof this.startTimestamp === 'undefined' || this.startTimestamp === null || this.startTimestamp === 0) {
+        this.startTimestamp = new Date().getTime() / 1000;
+        this.timeInit = process.uptime();
+    }
+    return this.startTimestamp + process.uptime() - this.timeInit;
 }
 NodeBench.prototype.getMem = function() {
     var p = process.memoryUsage();
@@ -96,20 +102,20 @@ NodeBench.prototype.report = function(html, showFormat) {
         var offset = this.tickTimes[i][1] - base;
         offset = offset.toFixed(10);
         if(offset >= 0) {
-            if(offset < 100000000) {
-                offset = '00000000' + offset;
-                offset = '+' + offset.slice(-19);
+            if(offset < 10000000000) {
+                offset = '0000000000' + offset;
+                offset = '+' + offset.slice(-21);
             }
             else offset = '+' + offset;
         }
-        else if(offset < -100000000) {
-            offset = '00000000' + offset.slice(1);
-            offset = '-' + offset.slice(-19);
+        else if(offset < -10000000000) {
+            offset = '0000000000' + offset.slice(1);
+            offset = '-' + offset.slice(-21);
         }
         var timestamp = this.tickTimes[i][1].toFixed(10);
-        if(timestamp < 100000000) {
-            timestamp = '00000000' + timestamp;
-            timestamp = timestamp.slice(-19);
+        if(timestamp < 10000000000) {
+            timestamp = '0000000000' + timestamp;
+            timestamp = timestamp.slice(-21);
         }
         out(this.tickTimes[i][0] + ' ' + timestamp + ' (' + offset + ' secs) - ' + this.tickTimes[i][2][0] + ' bytes (' + this.tickTimes[i][2][1] + ' bytes) - ' + this.tickTimes[i][3] + br);
     }
